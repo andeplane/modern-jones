@@ -1,9 +1,10 @@
 # Design reference
 
-Two halves:
+Three parts:
 
 - **[original/](original/)**: how *Jones in the Fast Lane* (Sierra, 1990) actually works, recovered from its bytecode. Numbers, formulas, odds and the computer opponent's decision list, each tagged with the script and address it came from and a confidence level.
-- **[modern-game.md](modern-game.md)**: the design for our modern game, clearly inspired by the original: same core loop, a modern city, simultaneous multiplayer weeks.
+- **[modern-game.md](modern-game.md)**: the design for our modern game, clearly inspired by the original: same core loop, a modern city, simultaneous one-minute multiplayer weeks.
+- **[economy-sim.md](economy-sim.md)**: the player-driven economy: business cycle, prices, companies, labour market, stock market, credit.
 
 ## Where the original came from
 

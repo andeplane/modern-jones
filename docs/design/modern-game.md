@@ -21,8 +21,8 @@ The original is strictly turn-based: three friends wait while one plays. Here **
 
 ### Week structure
 1. **Monday briefing** (shared, about 10 seconds, skippable when everyone taps READY). Headlines, the economy ticker, and each player's private notices: food spoiled, rent due, burglary, lottery win, pay cut. Goal check happens here.
-2. **The week** (simultaneous). Everyone starts at home with 60 hours. Your clock only moves when *you* walk or act, so there is no twitch pressure inside the week, just your own budget. A shared **real-time week timer** (room setting: 90 s, 2 min default, 3 min, or off for relaxed play) keeps the party moving.
-3. **Your week ends** when your hours reach 60 or you tap **CALL IT A WEEK**. Hours left unused when you call it a week, or when the timer runs out, count as rest: every 6 unused hours = one relax press (relax +3), happiness bonus included once. Finished players watch the others on the board.
+2. **The week** (simultaneous). Everyone starts at home with 60 game hours and about **60 real seconds** to spend them (room setting: 45 / 60 / 90 s). Game hours only move when *you* walk or act; the real-time minute is the pressure. A week takes one minute however many people play.
+3. **Your week ends** when your hours reach 60, you tap **CALL IT A WEEK**, or the minute runs out. Unspent hours count as **sleep**: every 6 unused hours is one relax press (relax +3), happiness bonus included once. Finished players watch the others on the board.
 4. **Weekend** (shared, a few seconds): each player's weekend story and its cost, then the next Monday.
 
 ### Making "same week" matter
@@ -30,7 +30,7 @@ Simultaneity is only interesting if players touch each other. Light, readable co
 
 - **One holder per job.** Each of the 37 positions can be held by one player at a time. If a rival is the Bank Manager, the posting shows their face and is closed to you. When two players apply for the same opening in the same moment, the input log's order decides, deterministically on every device.
 - **Limited deals.** MegaMart (the discount store) shows a few deals per week with shared stock ("2 left"). The resale shop's forfeited items are first come, first served.
-- **Market impact.** Buying or selling a lot of one investment nudges its index a little for everyone that week.
+- **A shared economy.** Your spending is a company's revenue, your shifts are its output, your trades move share prices for everyone. See [economy-sim.md](economy-sim.md).
 - **Hanging out.** Two or more players relaxing at the same home, or the same café, in the same week each get an extra happiness point. Cooperation is a valid strategy.
 - **Visible rivals.** Everyone's avatar walks the same board in real time and the goal thermometers are public, so you see who is about to win.
 
@@ -51,7 +51,7 @@ Same 13 roles, modern skins. Names are placeholders to iterate on.
 | Rent office | **KeyNest** (landlord office) | Pay, extensions (100/75/50/25%), wage garnishment for arrears. |
 | Black's Market | **FreshCo** (grocery) | Groceries for 1/2/4 weeks, scratch cards (the lottery), news subscription. |
 | Monolith Burger | **Mono Burger** drive-thru | Burgers feed you one week; **changed:** order delivery from anywhere for +50% price and 1 hour, no walking. |
-| Bank + broker | **Neobank** | Savings, loans, trading. **changed:** savings earn 0.5% a week. Investments: Bonds (T-bills), Gold, Index Fund (blue chip), Tech Stocks, Commodities (pork bellies), Crypto (penny stocks, risk 10). |
+| Bank + broker | **Neobank** | Savings with interest, loans priced by credit score, trading in the eight employers' shares, an index fund, bonds, gold and crypto ([economy-sim.md](economy-sim.md)). |
 | Factory | **Gigafactory** | Shift work; the biggest ladder (janitor to general manager). |
 | Employment office | **Job Hub** | Postings for every employer, applications, raises. **changed:** gig work (rideshare, delivery) anywhere: $5/h, no requirements, builds no career. |
 | Hi-Tech U | **City College** | Same two course trees, reskinned: Trade Cert → IoT Technician, Pre-Engineering → Engineering; Community College → Business (MBA), Liberal Arts → Grad School → PhD → Research → Publishing. $50 enrollment, 10 lessons, books and a laptop each cut one. |
@@ -64,7 +64,7 @@ Keep the original's humour: every place has a rotating one-liner greeting and sh
 
 ## 4. Fixes to the original
 
-- The economy updates **once per week**, not once per player turn, and crash/boom odds no longer scale with player count.
+- The single random-walk economy is replaced by the player-driven simulation in [economy-sim.md](economy-sim.md): business cycle, inflation, a central bank rate, companies whose revenue is player spending, wages from a labour market, and share prices that trades move. It updates once per week.
 - Upside price spikes can happen (the original tests the lower bound twice).
 - Investment headlines actually show in the news.
 - A crash wipes the whole savings balance, not its low 16 bits; better, a crash costs a percentage of savings (severity 1: 50%) rather than everything.
@@ -99,6 +99,6 @@ Start from Pig (`npx tsx scripts/new-game.ts fuse-lane`), which gives rooms, QR 
 
 ## 7. Milestones
 
-1. **Playable core.** Board, walking, hours, the 13 places with their core actions (work, apply, study, groceries and fast food, clothes, gadgets, rent, deposit/withdraw), Monday upkeep, economy, goals and win, simultaneous weeks with the timer, simple bots. Solo, room and shared TV.
-2. **Full economy and life.** Trading, loans, resale shop, lottery, theft and breakdowns, weekend stories, news, crashes and booms, job contention, full bot rules.
+1. **Playable core.** Board, walking, hours, the 13 places with their core actions (work, apply, study, groceries and fast food, clothes, gadgets, rent, deposit/withdraw), Monday upkeep, the macro layer and category prices, goals and win, simultaneous weeks with the timer, simple bots. Solo, room and shared TV.
+2. **Full economy and life.** The economy simulation (companies, labour market, stock market, credit, news), resale shop, lottery, theft and breakdowns, weekend stories, news, crashes and booms, job contention, full bot rules.
 3. **Art and feel.** Final art pass, sound and music, animation, onboarding, balance pass from playtests.
